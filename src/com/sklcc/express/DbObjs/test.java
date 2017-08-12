@@ -16,6 +16,7 @@ public class test {
 					leftJoin("dp_doors", "dp_doors.id", "=", "dp_door_permissions.pms_door_id").
 					leftJoin("dp_users", "dp_users.id", "=", "dp_door_permissions.pms_user_id").
 					where("user_name","凌云").
+					whereDate("door_create_time" ,">=","2017-08-06 17:16:08.0").
 					get();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

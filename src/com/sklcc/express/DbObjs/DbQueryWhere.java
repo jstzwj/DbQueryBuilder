@@ -4,11 +4,14 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 
 public class DbQueryWhere extends DbQueryTable implements DbQueryEnd{
+	
 	ArrayList<String> whereCond=new ArrayList<String>();
 	public String getWherePart(){
 		String rst="";
@@ -87,8 +90,30 @@ public class DbQueryWhere extends DbQueryTable implements DbQueryEnd{
 		this.whereCond.add(cond);
 		return this;
 	}
-	
-	
+	public DbQueryWhere whereDate(String col, Date date){
+		String cond;
+		cond=" "+col+" = cast('"+df.format(date)+"' as datetime)";
+		this.whereCond.add(cond);
+		return this;
+	}
+	public DbQueryWhere whereDate(String col, String date){
+		String cond;
+		cond=" "+col+" = cast('"+date+"' as datetime)";
+		this.whereCond.add(cond);
+		return this;
+	}
+	public DbQueryWhere whereDate(String col,String cmp, Date date){
+		String cond;
+		cond=" "+col+" "+cmp+" cast('"+df.format(date)+"' as datetime)";
+		this.whereCond.add(cond);
+		return this;
+	}
+	public DbQueryWhere whereDate(String col,String cmp, String date){
+		String cond;
+		cond=" "+col+" "+cmp+" cast('"+date+"' as datetime)";
+		this.whereCond.add(cond);
+		return this;
+	}
 	public int update(DbColMap map) throws SQLException{
 		//如果没有连接数据库，记录错误
 		if (connection.dbConnection == null) {

@@ -4,11 +4,14 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 //import java.util.ArrayList;
+import java.util.Date;
 
 
 
 public class DbQueryTable extends DbQuery implements DbQueryEnd {
+	protected static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	String table="";
 	public DbQueryWhere where(String col,int val){
 		DbQueryWhere obj=new DbQueryWhere();
@@ -120,6 +123,42 @@ public class DbQueryTable extends DbQuery implements DbQueryEnd {
 	public DbQueryTable leftJoin(String tbl,String left,String cond,String right){
 		table+=" LEFT JOIN "+tbl+" ON "+left+" "+cond+" "+right+" ";
 		return this;
+	}
+	public DbQueryWhere whereDate(String col, Date date){
+		DbQueryWhere obj=new DbQueryWhere();
+		obj.connection=this.connection;
+		obj.table=this.table;
+		String cond;
+		cond=" "+col+" = cast('"+df.format(date)+"' as datetime)";
+		obj.whereCond.add(cond);
+		return obj;
+	}
+	public DbQueryWhere whereDate(String col, String date){
+		DbQueryWhere obj=new DbQueryWhere();
+		obj.connection=this.connection;
+		obj.table=this.table;
+		String cond;
+		cond=" "+col+" = cast('"+date+"' as datetime)";
+		obj.whereCond.add(cond);
+		return obj;
+	}
+	public DbQueryWhere whereDate(String col,String cmp, Date date){
+		DbQueryWhere obj=new DbQueryWhere();
+		obj.connection=this.connection;
+		obj.table=this.table;
+		String cond;
+		cond=" "+col+" "+cmp+" cast('"+df.format(date)+"' as datetime)";
+		obj.whereCond.add(cond);
+		return obj;
+	}
+	public DbQueryWhere whereDate(String col,String cmp, String date){
+		DbQueryWhere obj=new DbQueryWhere();
+		obj.connection=this.connection;
+		obj.table=this.table;
+		String cond;
+		cond=" "+col+" "+cmp+" cast('"+date+"' as datetime)";
+		obj.whereCond.add(cond);
+		return obj;
 	}
 	
 	
