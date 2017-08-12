@@ -12,7 +12,11 @@ public class test {
 				"javauser", "12345678");
 		DbResultSet rs=null;
 		try {
-			rs=DbQuery.in(con).table("dp_doors").where("id", 2).get();
+			rs=DbQuery.in(con).table("dp_door_permissions").
+					leftJoin("dp_doors", "dp_doors.id", "=", "dp_door_permissions.pms_door_id").
+					leftJoin("dp_users", "dp_users.id", "=", "dp_door_permissions.pms_user_id").
+					where("user_name","凌云").
+					get();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

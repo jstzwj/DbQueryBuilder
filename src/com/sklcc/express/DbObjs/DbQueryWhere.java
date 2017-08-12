@@ -359,7 +359,7 @@ public class DbQueryWhere extends DbQueryTable implements DbQueryEnd{
 		return result;
 	}
 	@Override
-	public DbResultSet plunk(String str) throws SQLException {
+	public DbResultSet plunk(String col) throws SQLException {
 		if (connection.dbConnection == null) {
 			System.out.println("haven't inited the db!");
 		}
@@ -371,7 +371,7 @@ public class DbQueryWhere extends DbQueryTable implements DbQueryEnd{
 		try {
 			//创建声明
 			stmt = connection.dbConnection.createStatement();
-			sql = "SELECT "+str+" FROM "+table+" ";
+			sql = "SELECT "+col+" FROM "+table+" ";
 			sql+=getWherePart();
 			rs = stmt.executeQuery(sql);
 			meta_data=rs.getMetaData();
