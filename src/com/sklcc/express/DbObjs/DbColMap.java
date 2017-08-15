@@ -30,8 +30,20 @@ public class DbColMap {
 		this.data.add(new DbPair<String, DbObj>(f,new DbObj(" '"+val+"' ")));
 		return this;
 	}
+	public DbColMap addString(String f,String val){
+		this.data.add(new DbPair<String, DbObj>(f,new DbObj(" '"+val+"' ")));
+		return this;
+	}
 	public DbColMap add(String f,int val){
 		this.data.add(new DbPair<String, DbObj>(f,new DbObj(Integer.toString(val))));
+		return this;
+	}
+	public DbColMap addInt(String f,int val){
+		this.data.add(new DbPair<String, DbObj>(f,new DbObj(Integer.toString(val))));
+		return this;
+	}
+	public DbColMap addDate(String f,String val){
+		this.data.add(new DbPair<String, DbObj>(f,new DbObj(val)));
 		return this;
 	}
 }

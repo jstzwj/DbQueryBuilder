@@ -142,6 +142,15 @@ public class DbQueryTable extends DbQuery implements DbQueryEnd {
 		obj.whereCond.add(cond);
 		return obj;
 	}
+	public DbQueryWhere whereDate(String col, DbDateNow date){
+		DbQueryWhere obj=new DbQueryWhere();
+		obj.connection=this.connection;
+		obj.table=this.table;
+		String cond;
+		cond=" "+col+" = "+date.getNowFunction(connection.dbType)+" ";
+		obj.whereCond.add(cond);
+		return obj;
+	}
 	public DbQueryWhere whereDate(String col,String cmp, Date date){
 		DbQueryWhere obj=new DbQueryWhere();
 		obj.connection=this.connection;
@@ -157,6 +166,15 @@ public class DbQueryTable extends DbQuery implements DbQueryEnd {
 		obj.table=this.table;
 		String cond;
 		cond=" "+col+" "+cmp+" cast('"+date+"' as datetime)";
+		obj.whereCond.add(cond);
+		return obj;
+	}
+	public DbQueryWhere whereDate(String col,String cmp, DbDateNow date){
+		DbQueryWhere obj=new DbQueryWhere();
+		obj.connection=this.connection;
+		obj.table=this.table;
+		String cond;
+		cond=" "+col+" "+cmp+" "+date.getNowFunction(connection.dbType)+" ";
 		obj.whereCond.add(cond);
 		return obj;
 	}

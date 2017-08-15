@@ -3,13 +3,19 @@ package com.sklcc.express.DbObjs;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+
 public class DbConnection {
 	public Connection dbConnection = null;
+	public enum DbType{UNKNOWN,SQLSERVER,MYSQL,ORACLE};
+	public DbType dbType;
 	
 	public DbConnection() {
-		
+		dbType=DbType.UNKNOWN;
 	}
-	public void connect(String driver,String url,String user,String password){
+	public DbConnection(DbType type) {
+		dbType=type;
+	}
+	public void connect(String driver,String url,String user,String password) throws Exception{
 		//如果没连接，接数据库
 		if (dbConnection == null) {
 			try {
@@ -18,6 +24,7 @@ public class DbConnection {
 				dbConnection = DriverManager.getConnection(url, user, password);
 			} catch (Exception e) {
 				e.printStackTrace();
+				throw e;
 			}
 		}else{
 			try {
@@ -31,15 +38,17 @@ public class DbConnection {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				throw e;
 			}
 		}
 	}
-	public void close(){
+	public void close() throws Exception{
 		if (dbConnection != null) {
 			try {
 				dbConnection.close();
 			} catch (Exception e) {
 				e.printStackTrace();
+				throw e;
 			}
 		}
 	}
