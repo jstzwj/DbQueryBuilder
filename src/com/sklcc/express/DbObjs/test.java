@@ -10,6 +10,7 @@ public class test {
 			con.connect("com.microsoft.sqlserver.jdbc.SQLServerDriver",
 					"jdbc:sqlserver://10.10.64.196:1433;DatabaseName=doorpass_design_1;",
 					"javauser", "12345678");
+			/*
 			DbResultSet rs=null;
 			
 				rs=DbQuery.in(con).table("dp_door_permissions").
@@ -18,8 +19,27 @@ public class test {
 						where("user_name","凌云").
 						whereDate("door_create_time" ,">=","2017-08-06 17:16:08.0").
 						get();
+						*/
+			/*
+			DbQuery.
+				in(con).
+				table("dp_door_type").
+				insert(DbColMap.
+						make().
+						add("door_type_name", "机房").
+						add("door_type_description", "上课机房"));
+						*/
+			/*
+			DbQuery.
+				in(con).
+				table("dp_door_type").
+				where("door_type_name", "机房").
+				update(DbColMap.make().add("door_type_name","机房2"));
+				*/
 			
-			System.out.println(rs);
+			//DbQuery.in(con).table("dp_door_type").where("door_type_name", "机房2").delete();
+			
+			//System.out.println(rs);
 			con.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

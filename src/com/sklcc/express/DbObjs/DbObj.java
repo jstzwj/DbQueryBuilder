@@ -29,6 +29,9 @@ public class DbObj {
 	public boolean isNull(){
 		return value==null;
 	}
+	public String toString(){
+		return value;
+	}
 	public String getString(){
 		return value;
 	}

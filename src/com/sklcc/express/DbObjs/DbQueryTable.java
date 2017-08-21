@@ -203,7 +203,7 @@ public class DbQueryTable extends DbQuery implements DbQueryEnd {
 				if(i!=0){
 					sql+=" , ";
 				}
-				sql+=map.get(i).second.toString();
+				sql+=map.get(i).second.getString();
 			}
 			sql+=" ) ;";
 			result = stmt.execute(sql);
@@ -514,7 +514,7 @@ public class DbQueryTable extends DbQuery implements DbQueryEnd {
 				if(i!=0){
 					sql+=" , ";
 				}
-				sql+=map.get(i).first+" = "+map.get(i).second;
+				sql+=map.get(i).first+" = "+map.get(i).second.getString();
 			}
 			result = stmt.executeUpdate(sql);
 			stmt.close();

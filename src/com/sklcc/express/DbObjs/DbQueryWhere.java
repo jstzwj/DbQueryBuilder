@@ -142,7 +142,7 @@ public class DbQueryWhere extends DbQueryTable implements DbQueryEnd{
 				if(i!=0){
 					sql+=" , ";
 				}
-				sql+=map.get(i).first+" = "+map.get(i).second;
+				sql+=map.get(i).first+" = "+map.get(i).second.getString();
 			}
 			sql+=getWherePart();
 			result = stmt.executeUpdate(sql);
