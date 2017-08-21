@@ -2,6 +2,7 @@ package com.sklcc.express.DbObjs;
 
 import java.util.ArrayList;
 //import java.util.TreeMap;
+import java.util.Date;
 
 public class DbColMap {
 	public ArrayList<DbPair<String,DbObj>> data;
@@ -44,6 +45,14 @@ public class DbColMap {
 	}
 	public DbColMap addDate(String f,String val){
 		this.data.add(new DbPair<String, DbObj>(f,new DbObj(val)));
+		return this;
+	}
+	public DbColMap addDate(String f,Date val){
+		this.data.add(new DbPair<String, DbObj>(f,new DbObj(val)));
+		return this;
+	}
+	public DbColMap addCol(String f,String col){
+		this.data.add(new DbPair<String, DbObj>(f,new DbObj(col)));
 		return this;
 	}
 }
